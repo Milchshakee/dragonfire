@@ -1,0 +1,41 @@
+// test.idl : IDL source for test
+//
+
+// This file will be processed by the MIDL tool to
+// produce the type library (test.tlb) and marshalling code.
+
+import "oaidl.idl";
+import "ocidl.idl";
+
+[
+	object,
+	uuid(a817e7a2-43fa-11d0-9e44-00aa00b6770a),
+	dual,
+	pointer_default(unique)
+]
+interface IDragonImpl : IUnknown
+{
+	[id(1)]	HRESULT EndProcess(DWORD);
+	[id(2)]	HRESULT AddProcess(DWORD, const wchar_t*, const wchar_t*, DWORD);
+	[id(3)] HRESULT Register(IServiceProvider*);
+	[id(4)] HRESULT UnRegister();
+};
+
+[
+	uuid(b6918782-6823-4686-a7f6-7340a82c9c0a),
+	version(1.0),
+	custom(a817e7a1-43fa-11d0-9e44-00aa00b6770a, "{79501236-5f45-11e8-9c2d-fa7ae01bbebc}")
+]
+library dragonimplLib
+{
+	importlib("stdole2.tlb");
+
+	[
+		uuid(79501236-5f45-11e8-9c2d-fa7ae01bbebc)
+	]
+	coclass DragonImpl
+	{
+		[default] interface IDragonImpl;
+	};
+};
+
